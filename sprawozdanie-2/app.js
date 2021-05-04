@@ -56,6 +56,7 @@ class List {
       input.addEventListener("keypress", (e) => {
         this.tasks[i].value = e.target.value;
       });
+      if (task.isCompleted) input.classList.add("completed");
 
       const underline = document.createElement("span");
 
@@ -65,9 +66,26 @@ class List {
       removeBtn.textContent = "Remove";
       removeBtn.addEventListener("click", () => this.removeTask(i));
 
+      const checkboxContainer = document.createElement("label");
+      checkboxContainer.classList.add("checkbox");
+
+      const checkboxInput = document.createElement("input");
+      checkboxInput.type = "checkbox";
+      checkboxInput.checked = task.isCompleted;
+      checkboxInput.classList.add("checkbox__input");
+
+      const checkboxCheckmark = document.createElement("span");
+      checkboxCheckmark.classList.add("checkmark");
+
+      checkboxContainer.appendChild(checkboxInput);
+      checkboxContainer.appendChild(checkboxCheckmark);
+
+      checkboxInput.addEventListener("change", () => this.handleCheck(i));
+
       li.appendChild(input);
       li.appendChild(underline);
       li.appendChild(removeBtn);
+      li.appendChild(checkboxContainer);
       this.list.appendChild(li);
     });
   }
@@ -85,6 +103,11 @@ class List {
 
   removeTask(taskIndex) {
     this.tasks.splice(taskIndex, 1);
+    this.renderTasks();
+  }
+
+  handleCheck(taskIndex) {
+    this.tasks[taskIndex].isCompleted = !this.tasks[taskIndex].isCompleted;
     this.renderTasks();
   }
 }
