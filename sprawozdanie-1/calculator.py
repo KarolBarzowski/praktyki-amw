@@ -1,24 +1,29 @@
-operations = ["Dodawanie"]
-operators = ["+"]
+operations = ["Dodawanie", "Odejmowanie"]
+operators = ["+", "-"]
 
 def addition(a, b):
     return a + b
+
+def subtraction(a, b):
+    return a - b
 
 print("===* Kalkulator *===")
 while True:
     for i, operation in enumerate(operations):
         print(str(i + 1) + ". " + operation)
 
-    userChoice = int(input("Wybierz co chcesz zrobic wpisujac cyfre: "))
+    userChoice = input("Wybierz co chcesz zrobic wpisujac cyfre" + "(1-" + str(len(operations)) + "): ")
 
     if userChoice > 0 and userChoice <= len(operations):
         a = input("Podaj 1 liczbe: ")
-        b = input("Podaj 2 liczbe: " + str(a) + " + ")
+        b = input("Podaj 2 liczbe: " + str(a) + " " + operators[userChoice - 1] + " ")
 
         msg = str(a) + " " + operators[userChoice - 1] + " " + str(b) + " = "
 
         if userChoice == 1:
             msg += str(addition(a, b))
+        elif userChoice == 2:
+            msg += str(subtraction(a, b))
 
         print(msg)
     else:
