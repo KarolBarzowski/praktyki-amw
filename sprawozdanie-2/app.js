@@ -8,7 +8,7 @@ class Task {
 class List {
   constructor(parentEl) {
     this.parentEl = parentEl;
-    this.tasks = [new Task("lorem"), new Task("ipsum")];
+    this.tasks = JSON.parse(window.localStorage.getItem("tasks")) || [];
     this.createForm();
     this.list = this.createList();
     this.renderTasks();
@@ -98,17 +98,24 @@ class List {
 
       this.renderTasks();
       input.value = "";
+      this.updateLocalStorage();
     }
   }
 
   removeTask(taskIndex) {
     this.tasks.splice(taskIndex, 1);
     this.renderTasks();
+    this.updateLocalStorage();
   }
 
   handleCheck(taskIndex) {
     this.tasks[taskIndex].isCompleted = !this.tasks[taskIndex].isCompleted;
     this.renderTasks();
+    this.updateLocalStorage();
+  }
+
+  updateLocalStorage() {
+    window.localStorage.setItem("tasks", JSON.stringify(this.tasks));
   }
 }
 
