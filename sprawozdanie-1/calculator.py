@@ -1,11 +1,14 @@
-operations = ["Dodawanie", "Odejmowanie"]
-operators = ["+", "-"]
+operations = ["Dodawanie", "Odejmowanie", "Mnozenie"]
+operators = ["+", "-", "*"]
 
 def addition(a, b):
     return a + b
 
 def subtraction(a, b):
     return a - b
+
+def multiplication(a, b):
+    return a * b
 
 print("===* Kalkulator *===")
 while True:
@@ -24,6 +27,8 @@ while True:
             msg += str(addition(a, b))
         elif userChoice == 2:
             msg += str(subtraction(a, b))
+        elif userChoice == 3:
+            msg += str(multiplication(a, b))
 
         print(msg)
     else:
