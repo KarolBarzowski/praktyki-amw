@@ -27,7 +27,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.87);
-  transition: border-color 0.05s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
 }
 
 .input:hover,
@@ -46,7 +46,7 @@
   color: rgba(255, 255, 255, 0.87);
   margin-left: 15px;
   cursor: pointer;
-  transition: border-color 0.05s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
 }
 
 .button:hover,
@@ -65,14 +65,40 @@
 }
 
 .list > li {
-  font-family: "Poppins", sans-serif;
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.87);
-  width: 100%;
-  padding: 8px 15px;
-  border-bottom: 2px solid rgb(58, 58, 60);
+  position: relative;
 }
 
 .list > li:not(:last-child) {
   margin-bottom: 5px;
+}
+
+.list > li > input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.87);
+  padding: 8px 15px;
+  border-bottom: 2px solid rgb(58, 58, 60);
+  outline: none;
+}
+
+.list > li > span::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: scale(0);
+  width: 100%;
+  height: 2px;
+  background-color: rgb(10, 132, 255);
+  transform-origin: center center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.list > li > input:hover ~ span::before,
+.list > li > input:focus ~ span::before {
+  transform: scale(1);
 }

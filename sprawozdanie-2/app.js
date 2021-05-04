@@ -47,10 +47,20 @@ class List {
       this.list.removeChild(this.list.lastElementChild);
     }
 
-    this.tasks.forEach((task) => {
-      const el = document.createElement("li");
-      el.textContent = task.value;
-      this.list.appendChild(el);
+    this.tasks.forEach((task, i) => {
+      const li = document.createElement("li");
+
+      const input = document.createElement("input");
+      input.value = task.value;
+      input.addEventListener("keypress", (e) => {
+        this.tasks[i].value = e.target.value;
+      });
+
+      const underline = document.createElement("span");
+
+      li.appendChild(input);
+      li.appendChild(underline);
+      this.list.appendChild(li);
     });
   }
 
