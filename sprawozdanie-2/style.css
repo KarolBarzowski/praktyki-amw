@@ -102,3 +102,29 @@
 .list > li > input:focus ~ span::before {
   transform: scale(1);
 }
+
+.remove {
+  position: absolute;
+  padding: 4px 8px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: rgb(255, 69, 58);
+  border-radius: 5px;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.list > li:hover .remove,
+.list > li:hover .remove,
+.list > li > input:hover ~ .remove,
+.list > li > input:focus ~ .remove,
+.remove:hover,
+.remove:focus {
+  opacity: 1;
+}

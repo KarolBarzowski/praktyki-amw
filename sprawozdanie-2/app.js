@@ -51,6 +51,7 @@ class List {
       const li = document.createElement("li");
 
       const input = document.createElement("input");
+      input.type = "text";
       input.value = task.value;
       input.addEventListener("keypress", (e) => {
         this.tasks[i].value = e.target.value;
@@ -58,8 +59,15 @@ class List {
 
       const underline = document.createElement("span");
 
+      const removeBtn = document.createElement("button");
+      removeBtn.classList.add("remove");
+      removeBtn.type = "button";
+      removeBtn.textContent = "Remove";
+      removeBtn.addEventListener("click", () => this.removeTask(i));
+
       li.appendChild(input);
       li.appendChild(underline);
+      li.appendChild(removeBtn);
       this.list.appendChild(li);
     });
   }
@@ -73,6 +81,11 @@ class List {
       this.renderTasks();
       input.value = "";
     }
+  }
+
+  removeTask(taskIndex) {
+    this.tasks.splice(taskIndex, 1);
+    this.renderTasks();
   }
 }
 
