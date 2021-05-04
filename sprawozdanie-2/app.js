@@ -18,14 +18,14 @@ class List {
     const form = document.createElement("form");
     form.classList.add("form");
 
-    form.addEventListener("submit", null);
-
     const input = document.createElement("input");
     input.type = "text";
 
     const button = document.createElement("button");
     button.type = "submit";
     button.textContent = "Add";
+
+    form.addEventListener("submit", (e) => this.addTask(e, input));
 
     form.appendChild(input);
     form.appendChild(button);
@@ -41,11 +41,26 @@ class List {
   }
 
   renderTasks() {
+    while (this.list.lastElementChild) {
+      this.list.removeChild(this.list.lastElementChild);
+    }
+
     this.tasks.forEach((task) => {
       const el = document.createElement("li");
       el.textContent = task.value;
       this.list.appendChild(el);
     });
+  }
+
+  addTask(e, input) {
+    e.preventDefault();
+
+    if (input.value.length) {
+      this.tasks.push(new Task(input.value.trim()));
+
+      this.renderTasks();
+      input.value = "";
+    }
   }
 }
 
