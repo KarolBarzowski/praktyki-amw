@@ -1,0 +1,2 @@
+# Praktyki AMW
+### Karol Barzowski
