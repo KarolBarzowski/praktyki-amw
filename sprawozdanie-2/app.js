@@ -20,10 +20,12 @@ class List {
 
     const input = document.createElement("input");
     input.type = "text";
+    input.classList.add("input");
 
     const button = document.createElement("button");
     button.type = "submit";
     button.textContent = "Add";
+    button.classList.add("button");
 
     form.addEventListener("submit", (e) => this.addTask(e, input));
 

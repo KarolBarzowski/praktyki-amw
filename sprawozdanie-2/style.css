@@ -10,4 +10,69 @@
   align-items: center;
   height: 100vh;
   width: 100%;
+  background-color: rgb(28, 28, 30);
+}
+
+.form {
+  margin: 55px;
+}
+
+.input {
+  padding: 10px 15px;
+  width: 300px;
+  background-color: transparent;
+  border: 2px solid rgb(58, 58, 60);
+  border-radius: 5px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.87);
+  transition: border-color 0.05s ease-in-out;
+}
+
+.input:hover,
+.input:focus {
+  border-color: rgb(10, 132, 255);
+}
+
+.button {
+  padding: 10px 15px;
+  background-color: transparent;
+  border: 2px solid rgb(58, 58, 60);
+  border-radius: 5px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.87);
+  margin-left: 15px;
+  cursor: pointer;
+  transition: border-color 0.05s ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+  border-color: rgb(10, 132, 255);
+}
+
+.list {
+  list-style-type: none;
+  width: 400px;
+  height: 600px;
+  max-height: 600px;
+  border: 2px solid rgb(58, 58, 60);
+  border-radius: 15px;
+  overflow-y: auto;
+}
+
+.list > li {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.87);
+  width: 100%;
+  padding: 8px 15px;
+  border-bottom: 2px solid rgb(58, 58, 60);
+}
+
+.list > li:not(:last-child) {
+  margin-bottom: 5px;
 }
