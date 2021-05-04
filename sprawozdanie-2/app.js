@@ -21,6 +21,7 @@ class List {
     const input = document.createElement("input");
     input.type = "text";
     input.classList.add("input");
+    input.placeholder = "Type something...";
 
     const button = document.createElement("button");
     button.type = "submit";
@@ -55,6 +56,7 @@ class List {
       input.value = task.value;
       input.addEventListener("keypress", (e) => {
         this.tasks[i].value = e.target.value;
+        this.updateLocalStorage();
       });
       if (task.isCompleted) input.classList.add("completed");
 
@@ -88,6 +90,13 @@ class List {
       li.appendChild(checkboxContainer);
       this.list.appendChild(li);
     });
+
+    if (!this.tasks.length) {
+      const emptyList = document.createElement("h1");
+      emptyList.textContent = "Your list is empty!";
+      emptyList.classList.add("empty");
+      this.list.appendChild(emptyList);
+    }
   }
 
   addTask(e, input) {
