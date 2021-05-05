@@ -1,6 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 
-result = requests.get("http://www.google.com")
+print("Co chcialbys kupic?")
+query = input("Chcialbym kupic ")
 
-print("status:", result.status_code)
+result = requests.get("https://www.olx.pl/oferty/q-" + query)
+src = result.content
+soup = BeautifulSoup(src, "html.parser")
+
+offers = soup.find_all("tr", {"class": "wrap"})
+
+for offer in offers:
+    title = offer.find("h3").a.strong.string
+    print("Tytul: " + title)
