@@ -1,15 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import csv
 
-print("Co chcialbys kupic?")
-query = input("Chcialbym kupic ")
-
-result = requests.get("https://www.olx.pl/oferty/q-" + query)
+result = requests.get("https://apynews.pl/ranking-youtuberow/compact")
 src = result.content
 soup = BeautifulSoup(src, "html.parser")
-
-offers = soup.find_all("tr", {"class": "wrap"})
-
-for offer in offers:
-    title = offer.find("h3").a.strong.string
-    print("Tytul: " + title)
