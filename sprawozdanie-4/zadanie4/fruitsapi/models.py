@@ -8,3 +8,10 @@ class Fruit(models.Model):
 
     def __str__(self):
         return self.name
+
+class Animal(models.Model):
+    name = models.CharField(max_length=30)
+    image = models.URLField(default="")
+
+    def __str__(self):
+        return self.name
