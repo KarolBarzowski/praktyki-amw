@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./App.css";
 
 function App() {
   const [data, setData] = useState([]);
 
+  const { apiId } = useParams();
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/fruits/")
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
+    if (apiId) {
+      fetch(`http://127.0.0.1:8000/${apiId}`)
+        .then((res) => res.json())
+        .then((data) => setData(data));
+    }
+  }, [apiId]);
 
   return (
     <ul>
-      {data.map(({ name, image, color, originCountry }) => (
-        <li key={name}>
-          <img src={image} alt={name} />
-          <h1>{name}</h1>
-          <h3>
-            Color: <span style={{ color: color }}>{color}</span>
-          </h3>
-          <h3>Origin country: {originCountry}</h3>
+      {data.map((item) => (
+        <li key={item.name}>
+          <img src={item.image} alt={item.name} />
+          <h1>{item.name}</h1>
+          {item.color ? (
+            <h3>
+              Color: <span style={{ color: item.color }}>{item.color}</span>
+            </h3>
+          ) : null}
+          {item.originCountry ? <h3>Origin country: {item.originCountry}</h3> : null}
         </li>
       ))}
     </ul>
